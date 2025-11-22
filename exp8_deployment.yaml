@@ -17,3 +17,6 @@ spec:
         image: myimage/webapp:latest
         ports:
         - containerPort: 5000
+
+
+        
