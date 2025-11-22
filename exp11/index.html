@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Sum Calculator</title>
+ <style>
+ body{
+ text-align: center;
+ }
+ </style>
+ </head>
+ <body>
+ <h1>Sum Calculator</h1>
+ <input type="number" id="num1" placeholder="Enter first number">
+ <input type="number" id="num2" placeholder="Enter second number">
+ <button id="add">Add</button>
+ <p>Result: <span id="result">0</span></p>
+ <script>
+	 // Calculate sum of two numbers and return numeric result
+	 function calculateSum(a, b) {
+		 return a + b;
+	 }
+
+	 document.getElementById('add').addEventListener('click', function () {
+		 // Read values and parse as numbers (support decimals). Fall back to 0 if empty/invalid.
+		 const raw1 = document.getElementById('num1').value;
+		 const raw2 = document.getElementById('num2').value;
+		 const n1 = parseFloat(raw1);
+		 const n2 = parseFloat(raw2);
+		 const a = Number.isFinite(n1) ? n1 : 0;
+		 const b = Number.isFinite(n2) ? n2 : 0;
+
+		 const result = calculateSum(a, b);
+		 document.getElementById('result').textContent = result;
+	 });
+ </script>
+ </body>
+ </html>
