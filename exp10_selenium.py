@@ -7,7 +7,7 @@ driver = webdriver.Chrome()
 driver.get("https://www.google.com")
 
 search_box = driver.find_element(By.NAME, "q")
-search_box.send_keys("DevOps Tutorials")
+search_box.send_keys("https://www.amazon.com")
 search_box.send_keys(Keys.RETURN)
 
 time.sleep(5)
