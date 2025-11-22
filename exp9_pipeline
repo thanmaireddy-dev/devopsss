@@ -29,6 +29,8 @@ pipeline {
 }
 
 /*
+exp 09: Automate the process of running containerized application developed in exercise 7
+using Kubernetes.
 In Jenkins → New Item → Pipeline → OK
 Scroll to bottom → Pipeline Script → paste this script.
 
