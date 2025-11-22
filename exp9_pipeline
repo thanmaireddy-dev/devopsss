@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone YAML files from GitHub') {
+            steps {
+                git branch: 'main', url: 'https://github.com/thanmaireddy-dev/devopsss.git'
+                echo 'Repository cloned successfully.'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo 'Applying Kubernetes Deployment & Service Yaml Files...'
+                sh 'kubectl apply -f exp8_deployment.yaml'
+                sh 'kubectl apply -f exp8_service.yaml'
+            }
+        }
+
+        stage('Verify Pods and Services') {
+            steps {
+                echo 'Checking Kubernetes Pods...'
+                sh 'kubectl get pods'
+                echo 'Checking Kubernetes Services...'
+                sh 'kubectl get svc'
+            }
+        }
+    }
+}
+
+/*
+In Jenkins → New Item → Pipeline → OK
+Scroll to bottom → Pipeline Script → paste this script.
+
+=> What Happens When You Click “Build Now”
+
+Jenkins will:
+
+Download the YAML files (or use local workspace),
+Run
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+
+Kubernetes will:
+
+Pull your Docker image from Docker Hub
+Restart the pod if changes happened
+Keep the service running
+
+output: 
+After Jenkins runs:
+
+Open Docker Desktop → Kubernetes → Pods
+Show that the pod restarted “a few seconds ago”
+
+Open http://localhost:<NodePort>
+the app will be working.
+*/
